@@ -178,15 +178,24 @@ TryApiApp.controller('HomeController', [
                 }
               };
               return method.speak = function() {
+                  var data = {action: 'speak'};
+                  method.parameters.forEach(function (item) {
+                      if (item.type =="array") {
+                          array = []
+                          item.values.forEach(function (data) {
+                              array.push(Object.values(data)[0].value)
+                          })
+                          data[item.name] = array;
+                      } else{
+                          data[item.name] = item.value;
+                      }
+                  })
                 method.ws.send(JSON.stringify({
                   command: "message",
-                  data: JSON.stringify({
-                    message: method.message,
-                    action: 'speak'
-                  }),
+                  data: JSON.stringify(data),
                   identifier: JSON.stringify(method.identifier)
                 }));
-                return method.message = '';
+                return method.message = ''
               };
             default:
               return method.submit = function() {
