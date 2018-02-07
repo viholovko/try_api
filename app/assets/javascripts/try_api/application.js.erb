@@ -146,7 +146,11 @@ TryApiApp.controller('HomeController', [
                   data: []
                 };
                 if ('WebSocket' in window) {
-                  method.ws = new WebSocket('ws://' + $scope.project.endpoint + '/' + method.submit_path);
+                    console.log("----------------------");
+                    console.log($scope.project.endpoint);
+                    console.log(($scope.project.endpoint).replace('http://', ''));
+                    console.log("----------------------");
+                  method.ws = new WebSocket('ws://' + ($scope.project.endpoint).replace('http://', '') + '/' + method.submit_path);
                   method.ws.onopen = function() {
                     return $scope.$apply(function() {
                       method.pending = false;
