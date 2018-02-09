@@ -139,15 +139,19 @@
                             <span class="ladda-label">Connect</span><span class="ladda-spinner"></span>
                             <div class="ladda-progress" style="width: 100px"></div>
                         </button>
+                        <button class="btn btn-success ladda-button" data-color="mint" data-style="expand-right" ladda="method.pending" ng-click="method.disconnect()" sata-size="s" ng-show="method.connected">
+                            <span class="ladda-label">Disconnect</span><span class="ladda-spinner"></span>
+                            <div class="ladda-progress" style="width: 100px"></div>
+                        </button>
 
-                        <div ng-show="method.connected">
+                        <div ng-show="method.connected" ng-if="!method.listen_only" >
                             <div ng-if="method.parameters.length > 0">
                                 <div class="params-label">Parameters</div>
                                 <div ng-model="method.parameters" params=""></div>
                             </div>
                             <br/>
                         </div>
-                        <button class="btn btn-success ladda-button" data-color="mint" data-style="expand-right" ladda="method.pending" ng-click="method.speak()" sata-size="s" ng-show="method.connected">
+                        <button class="btn btn-success ladda-button" data-color="mint" data-style="expand-right" ladda="method.pending" ng-click="method.speak()" sata-size="s" ng-show="method.connected" ng-if="!method.listen_only">
                             <span class="ladda-label">Speak</span><span class="ladda-spinner"></span>
                             <div class="ladda-progress" style="width: 100px"></div>
                         </button>

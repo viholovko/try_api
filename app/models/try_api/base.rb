@@ -84,7 +84,7 @@ module TryApi
         hash = YAML.load_file("#{ Rails.root }/config/try_api/#{ filename }.yml")
         hash.with_indifferent_access
       else
-        raise ConfigFileNotFound
+        # raise ConfigFileNotFound
       end
     end
 
