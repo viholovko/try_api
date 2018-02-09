@@ -28,7 +28,7 @@ module TryApi
             instance_variable_set("@#{name}", value)
           end
         else
-          raise TryApi::ArgumentError.new
+          # raise TryApi::ArgumentError.new
         end
       end
     end
