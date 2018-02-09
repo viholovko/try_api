@@ -28,7 +28,7 @@ module TryApi
             instance_variable_set("@#{name}", value)
           end
         else
-          raise TryApi::ArgumentError.new
+          # raise TryApi::ArgumentError.new
         end
       end
     end
@@ -84,7 +84,7 @@ module TryApi
         hash = YAML.load_file("#{ Rails.root }/config/try_api/#{ filename }.yml")
         hash.with_indifferent_access
       else
-        raise ConfigFileNotFound
+        # raise ConfigFileNotFound
       end
     end
 

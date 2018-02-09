@@ -146,10 +146,6 @@ TryApiApp.controller('HomeController', [
                   data: []
                 };
                 if ('WebSocket' in window) {
-                    console.log("----------------------");
-                    console.log($scope.project.endpoint);
-                    console.log(($scope.project.endpoint).replace('http://', ''));
-                    console.log("----------------------");
                   method.ws = new WebSocket('ws://' + ($scope.project.endpoint).replace('http://', '') + '/' + method.submit_path);
                   method.ws.onopen = function() {
                     return $scope.$apply(function() {
@@ -200,6 +196,13 @@ TryApiApp.controller('HomeController', [
                   identifier: JSON.stringify(method.identifier)
                 }));
                 return method.message = ''
+              };
+              method.disconnect = function() {
+                return $scope.$apply(function() {
+                  return method.response.data.push('Disconnected');
+                    method.pending = false;
+                    method.connected = false;
+                });
               };
             default:
               return method.submit = function() {
